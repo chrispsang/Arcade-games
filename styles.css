@@ -1,0 +1,330 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.title {
+    text-align: center;
+    margin: 0;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.game-description {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.game-thumbnails {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.game-thumbnails a {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-thumbnails img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.game-thumbnails img:hover {
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+#gameCanvas {
+    background-color: #000;
+    border: 2px solid #333;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    margin: 1rem auto;
+    display: block;
+}
+
+#startSnake,
+#playAgainButton,
+#startBrickBreaker {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+#helpButton {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+#instructions {
+    display: none;
+    position: fixed; /* Position the instructions fixed to the viewport */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the element */
+    background-color: white;
+    padding: 1rem;
+    border: 2px solid black;
+    max-width: 50%; /* Adjusted max-width */
+    overflow: auto; /* Added overflow */
+    z-index: 9999; /* Ensure it's above other content */
+}
+
+/* Login layout */
+.login-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 300px;
+    margin: 1rem auto;
+}
+
+.login-container h2 {
+    margin-top: 0;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #555;
+}
+
+.login-container p {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.login-container p a.signup-link {
+    color: #333;
+    text-decoration: underline;
+}
+
+.login-container p a.signup-link:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+.continue-guest-button {
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.continue-guest-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+#userEmail {
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 0.5rem; /* Added margin-top */
+}
+
+.logout-button {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 0.5rem 1rem;
+    background-color: hsl(233, 88%, 50%);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    z-index: 9999;
+    margin-left: auto;
+    margin-top: 2px
+}
+
+.logout-button:hover {
+    background-color: hsl(0, 69%, 54%);
+}
+
+/* Signup layout */
+.signup-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.signup-container h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.signup-container input[type="email"],
+.signup-container input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.signup-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.signup-container button:hover {
+    background-color: #555;
+}
+
+#gameContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#leaderboardContainer {
+    flex: 1;
+    margin-right: 20px;
+    min-width: 300px;
+}
+
+#leaderboardContainer h2 {
+    margin-bottom: 10px;
+}
+
+#leaderboardList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#leaderboardList li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+#gameAndButtons {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#score {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    #gameContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #leaderboardContainer {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    #gameAndButtons {
+        width: 100%;
+    }
+
+    #buttonContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+}

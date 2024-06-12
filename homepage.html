@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Arcade</h1>
+        <p id="userEmail"></p>
+    </header>
+    <main>
+        <div class="title">
+            <h2>Choose a Game:</h2>
+            <div class="game-thumbnails">
+                <a href="games/Brickbreaker/brickbreaker.html">
+                    <img src="images/brickbreaker.png" alt="Brick Breaker Screenshot">
+                </a>
+                <a href="games/Snakegame/snakegame.html">
+                    <img src="images/snakegame.jpeg" alt="Snake Game Screenshot">
+                </a>
+                <!-- Add more game thumbnails here -->
+            </div>
+            <button class="logout-button" onclick="logout()">Log Out</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Arcade</p>
+    </footer> 
+    <script>
+        function logout() {
+            window.location.href = "index.html";
+            localStorage.removeItem('userEmail');
+        }
+        // Retrieve the email from local storage
+        const userEmail = localStorage.getItem('userEmail');
+        if (userEmail) {
+            // Display the email on the page
+            document.getElementById('userEmail').innerText = userEmail;
+        } else {
+            // If email is not found, redirect to login page
+            document.getElementById('userEmail').innerText = "Guest";
+        }
+    </script>
+</body>
+</html>

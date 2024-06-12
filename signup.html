@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+
+    <title>Signup - Arcade</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+      <h1>Arcade</h1>
+    </header>
+    <main>
+        <div class="login-container">
+            <h2>Sign Up</h2>
+              <form>
+                <input type="text" class="form-control shadow-sm" id="username" name="email" placeholder="Email">
+              </form>
+              <form>
+                <input type="password" class="form-control shadow-sm" id="password" name="password" placeholder="Password">
+              </form>
+              <button type="submit" id="btnSignup">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="index.html">Log In</a></p>
+            <button class="continue-guest-button" onclick=guestLogin()>Continue as Guest</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Arcade</p>
+    </footer>
+            
+  <script src="script.js"></script>
+  <script>
+    function guestLogin() {
+    const userEmail = localStorage.getItem('userEmail');
+    if (userEmail) {
+        // Display the email on the page
+        localStorage.removeItem('userEmail');
+        localStorage.setItem('userEmail', "Guest");
+    } else {
+        // If email is not found, redirect to login page
+        localStorage.setItem('userEmail', "Guest");
+    }
+
+        window.location.href = "homepage.html";
+    }
+    
+</script>
+  </body>
+  </html>

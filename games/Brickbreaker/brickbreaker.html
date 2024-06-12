@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick Breaker Game</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <header>
+        <h1>Brick Breaker Game</h1>
+        <button onclick="window.location.href='../../homepage.html'" style="color: black;">Back to Homepage</button>
+        <p id="userEmail"></p>
+        <button class="logout-button" onclick="logout()">Log Out</button>
+    </header>
+    <main>
+        <div id="gameContainer">
+            <div id="leaderboardContainer">
+                <h2>Leaderboard</h2>
+                <button id="leaderboardButton">Show Leaderboard</button>
+                <ul id="leaderboardList">
+                    <!-- Leaderboard entries will be dynamically added here -->
+                </ul>
+            </div>
+            <div id="gameAndButtons">
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                <div id="buttonContainer">
+                    <button id="startBrickBreaker" onclick="startGame()">Start Game</button>
+                    <button id="helpButton" onclick="toggleInstructions()">Help</button>
+                    <div id="instructions" style="display: none;">
+                        <p>Instructions:</p>
+                        <p>Break all the bricks using the ball and paddle.</p>
+                        <p>Touch on the paddle to grab and drag it left or right.</p>
+                        <p>Avoid letting the ball fall below the paddle, or you'll lose a life.</p>
+                        <button id="closeBtn" onclick="toggleInstructions()">Close</button>
+                    </div>
+                    <button id="playAgainButton" onclick="playAgain()" style="display: none;">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Arcade</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+    <script src="brickbreaker.js" defer></script>
+    <script>
+        let isPlaying = false;
+        let isPaused = false;
+
+        function startGame() {
+            document.getElementById("startBrickBreaker").style.display = "none";
+            isPlaying = true;
+            draw();
+        }
+
+        function toggleInstructions() {
+            var instructions = document.getElementById('instructions');
+            var startButton = document.getElementById('startBrickBreaker');
+            if (instructions.style.display === 'none' || instructions.style.display === '') {
+                instructions.style.display = 'block';
+                isPaused = true;
+            } else {
+                instructions.style.display = 'none';
+                isPaused = false;
+                if (isPlaying) {
+                    draw();
+                } else if (!isPlaying) {
+                    startButton.style.display = 'block';
+                }
+            }
+        }
+
+        function logout() {
+            window.location.href = "../../index.html";
+            localStorage.removeItem('userEmail');
+        }
+
+        // Retrieve the email from local storage
+        const userEmail = localStorage.getItem('userEmail');
+        if (userEmail) {
+            // Display the email on the page
+            document.getElementById('userEmail').innerText = userEmail;
+        } else {
+            // If email is not found, redirect to login page
+            document.getElementById('userEmail').innerText = "Guest";
+        }
+    </script>
+</body>
+</html>
+
+
