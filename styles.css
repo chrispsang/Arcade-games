@@ -6,6 +6,11 @@ body {
     flex-direction: column;
     min-height: 100vh;
     box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto;
+}
+html {
+    overflow-x: hidden; /* Prevent horizontal scrolling on the root element */
 }
 
 header {
@@ -87,7 +92,6 @@ footer {
 }
 
 #startSnake,
-#playAgainButton,
 #startBrickBreaker {
     padding: 1rem 2rem;
     font-size: 1.25rem;
@@ -96,8 +100,9 @@ footer {
 
 #helpButton {
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     font-size: 1rem;
+    margin-top: 10px;
 }
 
 #instructions {
@@ -200,7 +205,7 @@ footer {
     position: absolute;
     top: 60px;
     right: 20px;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.5rem;
     background-color: hsl(233, 88%, 50%);
     color: #fff;
     border: none;
@@ -327,4 +332,9 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+    .logout-button {
+         top: 5px; 
+        right: 5px;
+    }   
+    
 }
