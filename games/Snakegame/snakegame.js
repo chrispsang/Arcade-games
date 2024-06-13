@@ -137,7 +137,7 @@ function draw() {
     ctx.clearRect(0, 40, canvas.width, canvas.height - 40);
 
     if (gameOver) {
-        drawGameOver(); //Play again button
+        drawGameOver(); 
         return;
     }
 
@@ -183,20 +183,26 @@ function draw() {
 }
 
 function drawGameOver() {
-    // Adjust the position of the "Play Again" button dynamically
-    const playAgainButton = document.getElementById('playAgainButton');
-    const gameCanvasRect = canvas.getBoundingClientRect();
-    const centerX = gameCanvasRect.left + gameCanvasRect.width / 2;
-    const centerY = gameCanvasRect.top + gameCanvasRect.height / 2;
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    playAgainButton.style.display = 'block';
-    playAgainButton.style.position = 'absolute';
-    playAgainButton.style.top = `${centerY + gameCanvasRect.height / 4}px`;
-    playAgainButton.style.left = `${centerX}px`;
-    playAgainButton.style.transform = 'translate(-50%, -50%)';
+    // Display the game over message
+    ctx.fillStyle = 'white';
+    ctx.font = '30px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2);
+
+    // Optionally, display the final score
+    ctx.font = '20px Arial';
+    ctx.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2 + 30);
+
+    // Show the start button
+    document.getElementById('startSnake').style.display = 'block';
 }
 
-document.getElementById('playAgainButton').addEventListener('click', () => {
+
+document.getElementById('startSnake').addEventListener('click', () => {
+    if (!gameStarted || gameOver) {
     resetGame();
     score = 0;
     updateScore();
@@ -207,6 +213,7 @@ document.getElementById('playAgainButton').addEventListener('click', () => {
 
     // Hide the button after clicking
     document.getElementById('playAgainButton').style.display = 'none';
+    }
 });
 
 document.getElementById('helpButton').addEventListener('click', () => {
