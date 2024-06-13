@@ -69,10 +69,16 @@ canvas.addEventListener('mousedown', mouseDownHandler, false);
 canvas.addEventListener('mousemove', mouseMoveHandler, false);
 canvas.addEventListener('mouseup', mouseUpHandler, false);
 
+// Event listeners for touch events
+canvas.addEventListener('touchstart', touchStartHandler, false);
+canvas.addEventListener('touchmove', touchMoveHandler, false);
+canvas.addEventListener('touchend', touchEndHandler, false);
+
 // Mouse down handler
 function mouseDownHandler(e) {
     isMouseDown = true;
     offsetX = e.clientX - paddleX;
+    e.preventDefault();
 }
 
 // Mouse move handler
@@ -82,12 +88,44 @@ function mouseMoveHandler(e) {
         if (newPaddleX >= 0 && newPaddleX <= canvas.width - paddleWidth) {
             paddleX = newPaddleX;
         }
+        e.preventDefault();
     }
 }
 
 // Mouse up handler
 function mouseUpHandler() {
     isMouseDown = false;
+    e.preventDefault();
+}
+
+// Touch start handler
+function touchStartHandler(e) {
+    const touch = e.touches[0];
+    if (touch) {
+        isTouchDown = true;
+        touchOffsetX = touch.clientX - paddleX;
+        e.preventDefault();
+    }
+}
+
+// Touch move handler
+function touchMoveHandler(e) {
+    if (isTouchDown) {
+        const touch = e.touches[0];
+        if (touch) {
+            const newPaddleX = touch.clientX - touchOffsetX;
+            if (newPaddleX >= 0 && newPaddleX <= canvas.width - paddleWidth) {
+                paddleX = newPaddleX;
+            }
+            e.preventDefault(); 
+        }
+    }
+}
+
+// Touch end handler
+function touchEndHandler() {
+    isTouchDown = false;
+    e.preventDefault();
 }
 
 // Function to handle collision detection
