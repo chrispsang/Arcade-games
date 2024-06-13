@@ -23,6 +23,8 @@ let apple = {
 };
 
 let score = 0;
+let highScore = 0;
+let isGuest = localStorage.getItem("userEmail") === "Guest";
 let gameOver = false;
 let gameStarted = false;
 let gamePaused = false; // Variable to track whether the game is paused
@@ -39,23 +41,17 @@ var firebaseConfig = {
 };
 
 
-let isGuest = localStorage.getItem("userEmail") === "Guest";
-
-
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 } else {
     firebase.app(); 
 }
 
-
-let highScore = 0;
 if (isGuest) {
-    highScore = parseInt(localStorage.getItem("highScore"));
+    highScore = parseInt(localStorage.getItem("snakeGameHighScore")) || 0;
+} else {
+    getHighScore();
 }
-getHighScore();
-// const highScoreDisplay = document.getElementById("high-score");
-// highScoreDisplay.innerText = highScore;
 
 const scoreBox = document.getElementById("score");
 
@@ -102,13 +98,12 @@ function resetGame() {
 function updateScore() {
     if (score > highScore) {
         highScore = score;
-        // highScoreDisplay.innerText = score;
         if (!isGuest) {
             updateFirebase();
             updateLeaderboard(userEmail, score);
         }
         else {
-            localStorage.setItem("highScore", score);
+            localStorage.setItem("snakeGameHighScore", score);
         }
         
     }
@@ -423,7 +418,7 @@ function fetchLeaderboard() {
         });
 
         // Always include the guest score if it exists in local storage
-        const guestScore = parseInt(localStorage.getItem("highScore")) || 0;
+        const guestScore = parseInt(localStorage.getItem("snakeGameHighScore")) || 0;
         if (guestScore) {
             highestScores["Guest"] = guestScore;
         }
