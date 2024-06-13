@@ -201,6 +201,7 @@ function updateScore() {
             updateFirebase();
             updateLeaderboard(userEmail, score);
         } else {
+            updateLeaderboard(userEmail, score);
             localStorage.setItem("brickBreakerHighScore", score);
             
         }
@@ -237,17 +238,19 @@ function getHighScore() {
                 let name = user.email.substring(0, user.email.indexOf("@"));
                 
                 // Retrieve high score from Firebase
-                firebase.database().ref('users/' + name + '/gamescores/brickbreaker/').once('value')
-                    .then((snapshot) => {
-                        const databaseScore = snapshot.val();
-                        const parsedScore = parseInt(databaseScore, 10);
-                        if (parsedScore !== null) {
+                firebase.database().ref('users/' + name + '/gamescores/brickbreaker/').once('value').then((snapshot) => {
+
+                    const databaseScore = snapshot.val();
+                     if (databaseScore !== null) {
+                         const parsedScore = parseInt(databaseScore, 10);
+                        if (!isNaN(parsedScore)) {
                             highScore = parsedScore;
                         }
-                    })
-                    .catch((error) => {
-                        console.error('Error retrieving high score:', error);
-                    });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error retrieving high score:', error);
+                 });
             } else {
                 console.log('No user is signed in.');
             }

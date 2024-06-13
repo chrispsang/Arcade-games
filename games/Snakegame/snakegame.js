@@ -103,6 +103,7 @@ function updateScore() {
             updateLeaderboard(userEmail, score);
         }
         else {
+            updateLeaderboard(userEmail, score);
             localStorage.setItem("snakeGameHighScore", score);
         }
         
@@ -339,18 +340,20 @@ function getHighScore() {
             let name = user.email.substring(0, user.email.indexOf("@"));
             
             // Retrieve high score from Firebase
-            firebase.database().ref('users/' + name + '/gamescores/snakegame/').once('value')
-                .then((snapshot) => {
+            firebase.database().ref('users/' + name + '/gamescores/snakegame/').once('value').then((snapshot) => {
+
                 const databaseScore = snapshot.val();
-                const parsedScore = parseInt(databaseScore, 10);
-                if (parsedScore !== null) {
-                    // highScoreDisplay.innerText = parsedScore;
-                    highScore = parsedScore;
+                 if (databaseScore !== null) {
+                     const parsedScore = parseInt(databaseScore, 10);
+                    if (!isNaN(parsedScore)) {
+                        highScore = parsedScore;
+                    }
                 }
-                })
-                .catch((error) => {
+            })
+            .catch((error) => {
                 console.error('Error retrieving high score:', error);
-                });
+             });
+
             } else {
             console.log('No user is signed in.');
             }
