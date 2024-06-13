@@ -212,7 +212,7 @@ document.getElementById('startSnake').addEventListener('click', () => {
     draw(); // Start the game loop
 
     // Hide the button after clicking
-    document.getElementById('playAgainButton').style.display = 'none';
+    document.getElementById('startSnake').style.display = 'none';
     }
 });
 
