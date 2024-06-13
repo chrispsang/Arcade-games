@@ -45,13 +45,14 @@ To view and interact with the Arcade Website locally, follow these steps:
 
 2. **Open index.html**:
 
-Navigate to the directory where you cloned the repository.
-Find and open the index.html file in your preferred web browser.
+    Navigate to the directory where you cloned the repository.
+    Find and open the index.html file in your preferred web browser.
 
 ## Usage
 - Navigate to login page and either sign up, log in, or continue as a guest.
 - Choose a game (Brick Breaker or Snake) from the main menu.
 - Play the game and try to achieve the highest score.
+- Each game includes instructions to help you understand the gameplay mechanics.
 - **Authenticated Users**: Scores will be automatically saved to the Firebase database.
 - **Guest Users**: Scores will be saved to the local storage of the browser.
 - Visit the **Leaderboard** page to view the top scores for each game.
