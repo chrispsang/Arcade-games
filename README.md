@@ -3,7 +3,7 @@
   <p align="center">
     Welcome to Chris's Arcade, a collection of classic mini-games such as Brick Breaker and Snake. This project features user authentication and a leaderboard to showcase the highest scores. Built using HTML, CSS, JavaScript, and Firebase, it allows users to play games, track their scores, and compete on leaderboards.
     <br />
-    <a href="[https://chrispsang.github.io/Arcade-games/](https://chrispsang.github.io/Arcade-games/)">View Demo</a>
+    <a href="https://chrispsang.github.io/Arcade-games/">View Demo</a>
   </p>
 </div>
 
