@@ -8,11 +8,11 @@
 </div>
 
 ## Table of Contents
-- [Features](#features)
-- [Built With](#built-with)
-- [Roadmap](#roadmap)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
+1. [Features](#features)
+2. [Built With](#built-with)
+3. [Roadmap](#roadmap)
+4. [Getting Started](#getting-started)
+5. [Usage](#usage)
 
 ## Features
 - **User Authentication**: Sign up and log in using Firebase authentication.
@@ -21,7 +21,7 @@
 - **Leaderboard**: View the top scores for each game.
 - **Classic Games**: Includes Brick Breaker and Snake.
 
-### Built With
+## Built With
 * [![Javascript][Javascript.js]][Javascript-url]
 * [![HTML][HTML.html]][HTML-url]
 * [![CSS][CSS.css]][CSS-url]
